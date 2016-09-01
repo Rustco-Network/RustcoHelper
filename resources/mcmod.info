@@ -1,0 +1,16 @@
+[
+{
+  "modid": "rusticohelper",
+  "name": "Rustico Helper",
+  "description": "Zeigt wichtige Infos für das SkyBlock auf Rustico an.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "Rustco.de",
+  "updateUrl": "Rustco.de",
+  "authorList": ["ThexXTURBOXx"],
+  "credits": "Das Rustico Network natürlich und vor allem xIHades, V1Venox und Quadratwurzel, dessen Admins!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
