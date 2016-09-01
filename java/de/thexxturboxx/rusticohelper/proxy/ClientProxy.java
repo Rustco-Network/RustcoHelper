@@ -5,8 +5,6 @@ import org.lwjgl.input.Keyboard;
 import de.thexxturboxx.rusticohelper.RusticoHelper;
 import de.thexxturboxx.rusticohelper.gui.GuiMain;
 import de.thexxturboxx.rusticohelper.items.RusticoResourceManager;
-import de.thexxturboxx.rusticohelper.util.VersionChecker;
-import de.thexxturboxx.rusticohelper.util.VersionCheckerEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.settings.KeyBinding;
@@ -22,9 +20,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
 		super.preInit(e);
-		registerEventHandler(new VersionCheckerEvent());
-		Thread versionCheckThread = new Thread(new VersionChecker(), "Rustico Helper Version Check");
-		versionCheckThread.start();
 	}
 	
 	@Override

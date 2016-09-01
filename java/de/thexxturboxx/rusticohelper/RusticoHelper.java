@@ -11,9 +11,7 @@ import de.thexxturboxx.rusticohelper.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -23,12 +21,14 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import scala.actors.threadpool.Arrays;
 
-@Mod(modid = RusticoHelper.ID, name = RusticoHelper.NAME, version = RusticoHelper.VERSION, clientSideOnly = true)
+@Mod(modid = RusticoHelper.ID, name = RusticoHelper.NAME, version = RusticoHelper.VERSION, clientSideOnly = true,
+updateJSON = RusticoHelper.UPDATE_JSON)
 public class RusticoHelper {
 	
 	public static final String NAME = "Rustico Helper";
 	public static final String VERSION = "0.0.1";
 	public static final String ID = "rusticohelper";
+	public static final String UPDATE_JSON = "https://raw.githubusercontent.com/Rustico-Network/Rustico-Network.github.io/master/checker.json";
 	public static final Logger LOG = LogManager.getLogger(NAME);
 	public static final ResourceLocation PLACEHOLER_RECIPE = new ResourceLocation(ID, "textures/crafting/none.png");
 	
@@ -61,7 +61,7 @@ public class RusticoHelper {
 		itemList = new ArrayList<InvItem>();
 		addItem("Crook", "crook", Items.STICK, 2);
 		addResources(Items.STICK, "crook", 0);
-		addItem("Silk Mesh", "silk_mesh", Blocks.WEB, 1);
+		/*addItem("Silk Mesh", "silk_mesh", Blocks.WEB, 1);
 		addResources(Blocks.WEB, "silk_mesh", 0);
 		addItem("Sieve", "sieve", Blocks.NOTEBLOCK, 6);
 		addResources(Blocks.NOTEBLOCK, "sieve", 0);
@@ -88,7 +88,7 @@ public class RusticoHelper {
 		addItem("Water (Single-Use)", "water", Items.WATER_BUCKET, 0);
 		addResources(Items.WATER_BUCKET, "water", 0);
 		addItem("Lava (Single-Use)", "lava", Items.LAVA_BUCKET, 0);
-		addResources(Items.LAVA_BUCKET, "lava", 0);
+		addResources(Items.LAVA_BUCKET, "lava", 0);*/
 	}
 	
 	public static void addResources(Block toOverride, String itemName, int getter) {

@@ -14,7 +14,7 @@ public class RusticoPropertyGetter implements IItemPropertyGetter {
 			if(stack.getDisplayName().equals("Crook")) {
 				return 1;
 			}
-		} else if(stack.getItem() == Item.getItemFromBlock(Blocks.WEB)) {
+		}/* else if(stack.getItem() == Item.getItemFromBlock(Blocks.WEB)) {
 			if(stack.getDisplayName().equals("§fSilk Mesh")) {
 				return 1;
 			}
@@ -66,7 +66,7 @@ public class RusticoPropertyGetter implements IItemPropertyGetter {
 			if(stack.getDisplayName().equals("§fLava (Single-Use)")) {
 				return 1;
 			}
-		}
+		}*/
 		return 0;
 	}
 	
