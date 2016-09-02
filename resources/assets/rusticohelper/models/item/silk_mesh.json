@@ -1,7 +1,7 @@
 {
-    "parent":"minecraft:item/generated",
+    "parent":"rusticohelper:builtin/generated",
     "textures": {
-        "layer0":"rusticohelper:items/crook"
+        "layer0":"rusticohelper:items/silk_mesh"
     },
     "display": {
         "thirdperson": {

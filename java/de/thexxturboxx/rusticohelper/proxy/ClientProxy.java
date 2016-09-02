@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 
 import de.thexxturboxx.rusticohelper.RusticoHelper;
 import de.thexxturboxx.rusticohelper.gui.GuiMain;
+import de.thexxturboxx.rusticohelper.items.ResourceItem;
 import de.thexxturboxx.rusticohelper.items.RusticoResourceManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
@@ -33,7 +34,10 @@ public class ClientProxy extends CommonProxy {
 		    ClientRegistry.registerKeyBinding(kb);
 		}
 		RusticoHelper.registerItems();
-		((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(new RusticoResourceManager());
+		IReloadableResourceManager irrm = (IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager();
+		for(ResourceItem ri : RusticoHelper.resourceList) {
+			irrm.registerReloadListener(new RusticoResourceManager(ri.itemName, ri.toOverride, ri.meta));
+		}
 	}
 	
 	@Override

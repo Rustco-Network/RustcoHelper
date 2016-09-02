@@ -12,10 +12,10 @@ public class RusticoPropertyGetter implements IItemPropertyGetter {
 	public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
 		if(stack.getItem() == Items.STICK) {
 			if(stack.getDisplayName().equals("Crook")) {
-				return 1;
+				return 1F;
 			}
-		}/* else if(stack.getItem() == Item.getItemFromBlock(Blocks.WEB)) {
-			if(stack.getDisplayName().equals("§fSilk Mesh")) {
+		} else if(stack.getItem() == Item.getItemFromBlock(Blocks.WEB)) {
+			if(stack.getDisplayName().equals("Silk Mesh")) {
 				return 1;
 			}
 		} else if(stack.getItem() == Item.getItemFromBlock(Blocks.NOTEBLOCK)) {
@@ -66,8 +66,8 @@ public class RusticoPropertyGetter implements IItemPropertyGetter {
 			if(stack.getDisplayName().equals("§fLava (Single-Use)")) {
 				return 1;
 			}
-		}*/
-		return 0;
+		}
+		return -1F;
 	}
 	
 }

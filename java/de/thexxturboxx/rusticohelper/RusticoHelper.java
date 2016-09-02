@@ -9,9 +9,11 @@ import org.apache.logging.log4j.Logger;
 import de.thexxturboxx.rusticohelper.items.*;
 import de.thexxturboxx.rusticohelper.proxy.CommonProxy;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -31,8 +33,9 @@ public class RusticoHelper {
 	public static final String UPDATE_JSON = "https://raw.githubusercontent.com/Rustico-Network/Rustico-Network.github.io/master/checker.json";
 	public static final Logger LOG = LogManager.getLogger(NAME);
 	public static final ResourceLocation PLACEHOLER_RECIPE = new ResourceLocation(ID, "textures/crafting/none.png");
-	
+
 	public static List<InvItem> itemList;
+	public static List<ResourceItem> resourceList;
 	
 	@Instance(ID)
 	public static RusticoHelper instance;
@@ -59,9 +62,10 @@ public class RusticoHelper {
 	
 	public static void registerItems() {
 		itemList = new ArrayList<InvItem>();
+		resourceList = new ArrayList<ResourceItem>();
 		addItem("Crook", "crook", Items.STICK, 2);
 		addResources(Items.STICK, "crook", 0);
-		/*addItem("Silk Mesh", "silk_mesh", Blocks.WEB, 1);
+		addItem("Silk Mesh", "silk_mesh", Blocks.WEB, 1);
 		addResources(Blocks.WEB, "silk_mesh", 0);
 		addItem("Sieve", "sieve", Blocks.NOTEBLOCK, 6);
 		addResources(Blocks.NOTEBLOCK, "sieve", 0);
@@ -88,15 +92,11 @@ public class RusticoHelper {
 		addItem("Water (Single-Use)", "water", Items.WATER_BUCKET, 0);
 		addResources(Items.WATER_BUCKET, "water", 0);
 		addItem("Lava (Single-Use)", "lava", Items.LAVA_BUCKET, 0);
-		addResources(Items.LAVA_BUCKET, "lava", 0);*/
+		addResources(Items.LAVA_BUCKET, "lava", 0);
 	}
 	
 	public static void addResources(Block toOverride, String itemName, int getter) {
 		addResources(Item.getItemFromBlock(toOverride), itemName, getter);
-	}
-	
-	public static void addResources(Block toOverride, String itemName, int getter, int meta) {
-		addResources(Item.getItemFromBlock(toOverride), itemName, getter, meta);
 	}
 	
 	public static void addResources(Item toOverride, String itemName, int getter) {
@@ -104,16 +104,21 @@ public class RusticoHelper {
 	}
 	
 	public static void addResources(Item toOverride, String itemName, int getter, int meta) {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().
-		register(toOverride, meta, new ModelResourceLocation(RusticoHelper.ID + ":" + itemName, "inventory"));
+		resourceList.add(new ResourceItem(toOverride, itemName, getter, meta));
+		registerMM(toOverride, itemName);
 		switch(getter) {
 		case 0:
-			toOverride.addPropertyOverride(new ResourceLocation(itemName), new RusticoPropertyGetter());
+			toOverride.addPropertyOverride(new ResourceLocation(ID, itemName), new RusticoPropertyGetter());
 			break;
 		case 1:
-			toOverride.addPropertyOverride(new ResourceLocation(itemName + "_1"), new RusticoPropertyGetter1());
+			toOverride.addPropertyOverride(new ResourceLocation(ID, itemName + "_1"), new RusticoPropertyGetter1());
 			break;
 		}
+	}
+	
+	public static void registerMM(Item toOverride, String itemName) {
+		ModelBakery.registerItemVariants(toOverride, new ModelResourceLocation("minecraft:" + toOverride.getUnlocalizedName().substring(5), "inventory"),
+				new ModelResourceLocation(ID + ":" + itemName, "inventory"));
 	}
 	
 	public static void addItem(String name, String texture, Item material, int rls, String ... lore) {

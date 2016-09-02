@@ -1,7 +1,7 @@
 {
-    "parent":"minecraft:item/generated",
+    "parent":"rusticohelper:builtin/generated",
     "textures": {
-        "layer0":"minecraft:items/stick"
+        "layer0":"rusticohelper:items/crook"
     },
     "display": {
         "thirdperson": {
@@ -14,9 +14,5 @@
             "translation": [ 0, 4, 2 ],
             "scale": [ 1.7, 1.7, 1.7 ]
         }
-    },
-    "overrides": [
-        { "predicate": { "crook": 1 }, "model" : "rusticohelper:item/crook_0" },
-        { "predicate": { "crook": 0 }, "model" : "minecraft:item/stick" }
-    ]
+    }
 }
